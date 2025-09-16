@@ -1,0 +1,59 @@
+.events-page {
+}
+.events-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.events-topbar .chips {
+  display: flex;
+  gap: 10px;
+  margin-left: 12px;
+  align-items: center;
+}
+.chip {
+  background: rgba(124, 58, 237, 0.18);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: rgba(26, 26, 46, 0.98);
+  font-weight: 600;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.02);
+}
+.chip.active {
+  background: linear-gradient(90deg, #7c3aed, #ec4899);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.12);
+}
+.filter-panel {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+}
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.empty {
+  padding: 40px;
+  text-align: center;
+}
+@media (max-width: 900px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .events-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .events-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,146 @@
+.vh-hero {
+  /* make hero taller so page can scroll: use viewport height */
+  min-height: 60vh;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f172a, #0b1220);
+  margin-top: 0; /* remove external margin so background reaches the top */
+  padding-top: 72px; /* leave space for fixed header while keeping background under it */
+  position: relative;
+  overflow: hidden;
+}
+.hero-inner {
+  max-width: 1100px;
+  text-align: center;
+  padding: 32px;
+  /* give inner content some breathing room so button/search not at very bottom */
+  padding-bottom: 48px;
+}
+.hero-title {
+  font-size: 38px;
+  margin: 0;
+  color: white;
+}
+.hero-sub {
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 8px;
+}
+.hero-search {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 18px;
+}
+.hero-search input {
+  width: 480px;
+  max-width: 80%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+}
+
+/* Slider styles */
+.hero-slides {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  transform: translateX(0);
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+  z-index: 0;
+}
+.hero-slide-item {
+  flex: 0 0 100%;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.55);
+  transition: opacity 0.6s ease;
+  opacity: 1;
+}
+
+.hero-slide-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  background: rgba(0, 0, 0, 0.45);
+  padding: 28px 36px;
+  border-radius: 12px;
+  backdrop-filter: blur(6px) saturate(120%);
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+  display: inline-block;
+  text-align: center;
+}
+.hero-content .hero-title {
+  margin-bottom: 8px;
+}
+.hero-content .hero-sub {
+  margin-bottom: 14px;
+}
+.hero-controls {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+}
+.hero-controls button {
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  color: white;
+  padding: 24px;
+  border-radius: 6px;
+  font-size: 30px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hero-debug {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.hero-debug .thumb {
+  width: 56px;
+  height: 40px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  position: relative;
+}
+.hero-debug .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-debug .thumb.broken {
+  border-color: #ff4d4f;
+}
+.hero-debug .thumb .label {
+  position: absolute;
+  right: 4px;
+  bottom: 2px;
+  font-size: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2px 4px;
+  border-radius: 3px;
+  color: #fff;
+}

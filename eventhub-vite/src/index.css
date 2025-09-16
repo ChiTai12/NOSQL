@@ -1,0 +1,326 @@
+/* Minimal styles imported from original header to make component look similar */
+:root {
+  --primary-gradient: linear-gradient(
+    135deg,
+    #667eea 0%,
+    #764ba2 50%,
+    #f093fb 100%
+  );
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Inter, Segoe UI, Roboto, Arial;
+  margin: 0;
+  background-color: #fff;
+}
+/* Global main container to match the requested inline style: keeps pages centered and spaced */
+main {
+  padding: 24px 20px;
+  max-width: 1100px;
+  margin: 10px auto 0px;
+  box-sizing: border-box;
+}
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  /* use same dark, elevated background as footer for a cohesive look */
+  background: rgba(26, 26, 46, 0.95);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+.header.scrolled {
+  /* slightly stronger dark when scrolled */
+  background: rgba(26, 26, 46, 0.98);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  min-height: 64px; /* ensure consistent header height so children can center vertically */
+  /* slightly shift nav links group to the left of the logo for visual balance */
+}
+/* group that wraps left-side nav and logo if you need fine control */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transform: translateX(-80px); /* big nudge left per request */
+}
+.logo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-left: -60px; /* nudge logo further left for visual balance */
+}
+
+@media (max-width: 1000px) {
+  /* reduce the left nudge on smaller screens so header items don't overflow */
+  .nav-left {
+    transform: translateX(-18px);
+  }
+  .logo {
+    margin-left: -8px;
+  }
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+.nav-links li {
+  display: flex;
+}
+.nav-links a {
+  color: rgba(11, 17, 22, 0.9);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+/* Icon cho từng mục navigation bằng emoji hoặc ký tự đơn giản */
+.nav-links a[href*="trang-chu"]::before {
+  content: "🏠";
+  font-size: 14px;
+}
+.nav-links a[href*="su-kien"]::before {
+  content: "📅";
+  font-size: 14px;
+}
+.nav-links a[href*="tao-su-kien"]::before {
+  content: "➕";
+  font-size: 14px;
+}
+.nav-links a[href*="tinh-nang"]::before {
+  content: "⚡";
+  font-size: 14px;
+}
+.nav-links a[href*="lien-he"]::before {
+  content: "📧";
+  font-size: 14px;
+}
+/* Hover effects */
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+  color: rgba(11, 17, 22, 1);
+}
+
+/* Fallback icons by index in case href-based selectors don't match (ensures icons always show) */
+.nav-links li:nth-child(1) a::before {
+  content: "🏠";
+}
+.nav-links li:nth-child(2) a::before {
+  content: "📅";
+}
+.nav-links li:nth-child(3) a::before {
+  content: "➕";
+}
+.nav-links li:nth-child(4) a::before {
+  content: "⚡";
+}
+.nav-links li:nth-child(5) a::before {
+  content: "📧";
+}
+
+/* spacing tweak so icons sit slightly left of label */
+.nav-links a::before {
+  margin-right: 4px;
+  display: inline-block;
+}
+.auth-buttons {
+  display: flex;
+  gap: 0.5rem; /* slightly tighter spacing so buttons look more compact */
+  align-items: center;
+  height: 100%; /* fill nav height so alignment centers vertically */
+}
+.btn {
+  margin-bottom: 20px;
+  padding: 0.42rem 0.8rem; /* reduced padding for smaller buttons */
+  border-radius: 8px;
+  font-size: 0.92rem;
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 0; /* remove unexpected bottom margin so buttons center vertically */
+  transition: all 160ms ease;
+}
+.btn-primary {
+  background: var(--primary-gradient);
+  color: white;
+}
+.auth-buttons .btn-primary,
+.btn-primary {
+  /* Option A - harmonious coral CTA to match warm header (compact) */
+  background: linear-gradient(90deg, #ff7a59 0%, #ff9a82 100%);
+  color: #ffffff;
+  padding: 0.44rem 0.9rem; /* slightly smaller CTA padding */
+  border-radius: 10px;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 6px 20px rgba(255, 122, 89, 0.14);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+.auth-buttons .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(255, 122, 89, 0.2);
+}
+.btn-secondary {
+  /* Use an outlined/dark-text style so the button is visible on white pages */
+  background: transparent;
+  color: #0b1116; /* dark text for visibility on white */
+  border-color: rgba(11, 17, 22, 0.08);
+  box-shadow: 0 2px 6px rgba(11, 17, 22, 0.03);
+}
+.auth-buttons .btn-secondary,
+.btn-secondary {
+  /* refined login/text button to sit next to CTA (compact) */
+  background: transparent;
+  color: rgba(11, 17, 22, 0.95);
+  border: 1px solid rgba(11, 17, 22, 0.06);
+  padding: 0.36rem 0.6rem; /* reduced padding */
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.auth-buttons .btn-secondary:hover {
+  background: rgba(11, 17, 22, 0.03);
+}
+.mobile-menu {
+  display: none;
+  background: none;
+  border: none;
+  color: rgba(11, 17, 22, 0.95);
+  font-size: 1.2rem;
+}
+
+/* Header overrides for better contrast on warm header */
+.header .nav-links a {
+  color: rgba(255, 255, 255, 0.95);
+}
+.header .nav-links a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+.header .mobile-menu {
+  color: rgba(255, 255, 255, 0.95);
+}
+.header .auth-buttons .btn-secondary,
+.header .btn-secondary {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.sidebar {
+  --sidebar-bg: url("/assets/anhpaner.jpeg");
+  position: fixed;
+  right: -320px;
+  top: 0;
+  height: 100vh;
+  width: 320px;
+  background: rgba(26, 26, 46, 0.98);
+  backdrop-filter: blur(12px);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  transition: right 0.35s ease;
+  padding: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.03);
+  background-image: var(--sidebar-bg);
+  background-size: cover;
+  background-position: center;
+}
+.sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.6),
+    rgba(10, 10, 10, 0.8)
+  );
+  pointer-events: none;
+  border-radius: 0;
+}
+/* ensure sidebar children render above overlay */
+.sidebar > * {
+  position: relative;
+  z-index: 2;
+}
+.sidebar {
+  background-color: rgba(26, 26, 46, 0.98);
+}
+.sidebar.active {
+  right: 0;
+}
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.sidebar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+}
+.sidebar-nav li {
+  margin-bottom: 12px;
+}
+.sidebar-nav a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  display: block;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .mobile-menu {
+    display: block;
+  }
+}
+
+/* Disable mobile slide-out sidebar and hamburger: user prefers no slide panel */
+.mobile-menu {
+  display: none !important; /* hide hamburger so user can't click it */
+}
+.sidebar {
+  display: none !important; /* prevent slide-out panel from appearing */
+  right: -9999px !important;
+  pointer-events: none !important;
+}
