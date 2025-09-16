@@ -8,7 +8,7 @@ export default function EventDetail({ event, onClose }) {
     title: "Hội thảo Khoa học Mùa Thu 2025",
     cover: "/assets/hoithao2.jpg",
     description:
-      "Một ngày hội thảo tập trung vào các nghiên cứu mới nhất trong lĩnh vực AI, dữ liệu lớn và ứng dụng.",
+      "Đây là sự kiện kéo dài một ngày, quy tụ các chuyên gia, nhà nghiên cứu và doanh nghiệp hàng đầu trong lĩnh vực AI, dữ liệu lớn và ứng dụng thực tiễn. Hội thảo tập trung giới thiệu những nghiên cứu mới nhất, xu hướng công nghệ nổi bật cùng các giải pháp sáng tạo đang định hình tương lai",
     online: false,
     location: {
       address: "Hội trường A, Đại học ABC, Hà Nội",
@@ -53,6 +53,13 @@ export default function EventDetail({ event, onClose }) {
   const startStr = e.start ? new Date(e.start).toLocaleString() : null;
   const endStr = e.end ? new Date(e.end).toLocaleString() : null;
 
+  // default highlight bullets (can be overridden by event.highlights)
+  const highlights = e.highlights ?? [
+    "Quy tụ chuyên gia đầu ngành",
+    "Cập nhật nghiên cứu AI, Big Data mới nhất",
+    "Giao lưu kết nối học giả – doanh nghiệp",
+  ];
+
   return (
     <main className="event-detail-page">
       <header className="event-hero">
@@ -80,7 +87,23 @@ export default function EventDetail({ event, onClose }) {
           <section className="content-section description">
             <h2 className="section-title">Mô tả</h2>
             <div className="section-content">
-              <p>{e.description}</p>
+              {/* Highlights list for quick skimming */}
+              <ul className="highlights-list">
+                {highlights.map((h, i) => (
+                  <li className="highlight-item" key={i}>
+                    <span className="highlight-icon" aria-hidden>
+                      ✓
+                    </span>
+                    <span className="highlight-text">{h}</span>
+                  </li>
+                ))}
+              </ul>
+              {/* full description as paragraph (optional) */}
+              {e.description && (
+                <div className="description-text">
+                  <p>{e.description}</p>
+                </div>
+              )}
             </div>
           </section>
 
