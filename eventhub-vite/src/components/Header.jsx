@@ -22,31 +22,54 @@ export default function Header() {
       <header className={`header ${scrolled ? "scrolled" : ""}`}>
         <nav className="nav">
           <div className="logo">🚀 EventHub</div>
-          <ul className="nav-links">
-            <li>
-              <a href="#home">Trang chủ</a>
-            </li>
-            <li>
-              <a href="#events">Sự kiện</a>
-            </li>
-            <li>
-              <a href="#create">Tạo sự kiện</a>
-            </li>
-            <li>
-              <a href="#features">Tính năng</a>
-            </li>
-            <li>
-              <a href="#contact">Liên hệ</a>
-            </li>
-          </ul>
 
-          <div className="auth-buttons">
-            <a href="#login" className="btn btn-secondary">
-              Đăng nhập
-            </a>
-            <a href="#register" className="btn btn-primary">
-              Đăng ký miễn phí
-            </a>
+          <div className="nav-center">
+            <ul className="nav-links">
+              <li>
+                <a href="#home">
+                  <span className="material-icons">home</span>
+                  Trang chủ
+                </a>
+              </li>
+              <li>
+                <a href="#events">
+                  <span className="material-icons">add_circle</span>
+                  Tạo sự kiện
+                </a>
+              </li>
+              <li>
+                <a href="#contact">
+                  <span className="material-icons">phone</span>
+                  Liên hệ
+                </a>
+              </li>
+            </ul>
+
+            <div className="auth-buttons">
+              <div className="account-dropdown">
+                <button className="btn btn-secondary account-btn">
+                  <span className="material-icons">person</span>
+                  Tài khoản
+                  <span className="material-icons dropdown-arrow">
+                    keyboard_arrow_down
+                  </span>
+                </button>
+                <div className="dropdown-menu">
+                  <a href="#registered-events" className="dropdown-item">
+                    <span className="material-icons">event_available</span>
+                    Sự kiện đã đăng ký
+                  </a>
+                  <a href="#saved-events" className="dropdown-item">
+                    <span className="material-icons">bookmark</span>
+                    Sự kiện đã lưu
+                  </a>
+                  <a href="#notification-settings" className="dropdown-item">
+                    <span className="material-icons">notifications</span>
+                    Cài đặt thông báo
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
           {/* Always-visible menu button so sidebar can be opened on desktop for testing */}
           <button
