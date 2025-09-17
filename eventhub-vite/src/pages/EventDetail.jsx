@@ -60,16 +60,13 @@ export default function EventDetail({ event, onClose }) {
     "Giao lưu kết nối học giả – doanh nghiệp",
   ];
 
+  // description is rendered as normal paragraph (no per-letter animation)
+
   return (
     <main className="event-detail-page">
       <header className="event-hero">
         <img src={e.cover} alt="cover" className="event-cover" />
-        <div className="event-hero-inner">
-          <h1 className="event-title">{e.title}</h1>
-          <p className="event-meta">
-            {e.location?.address ?? (e.online ? "Online (Zoom)" : "")}
-          </p>
-        </div>
+        <div className="event-hero-inner"></div>
         {onClose && (
           <button
             className="detail-close"
@@ -146,7 +143,39 @@ export default function EventDetail({ event, onClose }) {
             <h2 className="section-title">Địa điểm</h2>
             <div className="section-content">
               <div className="venue-info">
-                <div className="venue-address">{e.location.address}</div>
+                <div className="venue-address">
+                  <svg
+                    className="venue-icon"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <span className="venue-text">{e.location.address}</span>
+                </div>
+
+                {/* Google Maps iframe */}
+                <div className="venue-map">
+                  <iframe
+                    src={`https://www.google.com/maps?q=${e.location.lat},${e.location.lng}&hl=vi&z=16&output=embed`}
+                    width="100%"
+                    height="220"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Bản đồ địa điểm"
+                  ></iframe>
+                </div>
+
                 {e.zoom && (
                   <div className="zoom-info">
                     <p>Phần trực tuyến (Zoom) cũng khả dụng cho sự kiện này.</p>
@@ -175,8 +204,26 @@ export default function EventDetail({ event, onClose }) {
             <div className="section-content">
               <div className="contact-info">
                 <p>
+                  <svg
+                    className="contact-icon"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"
+                      fill="currentColor"
+                    />
+                  </svg>{" "}
                   Liên hệ:{" "}
-                  <a href="mailto:contact@eventhub.example">
+                  <a
+                    href="mailto:contact@eventhub.example"
+                    className="contact-link"
+                  >
                     contact@eventhub.example
                   </a>
                 </p>
@@ -186,9 +233,24 @@ export default function EventDetail({ event, onClose }) {
 
           {/* Registration CTA at the bottom */}
           <div className="registration-cta">
-            <a className="btn btn-primary registration-btn" href="#register">
-              Đăng ký chương trình
-            </a>
+            <div className="cta-content">
+              <p className="cta-text">
+                Tham gia cùng hơn 500+ chuyên gia và nhà nghiên cứu
+              </p>
+              <div className="cta-badges" aria-hidden>
+                <span className="badge">500+ chuyên gia</span>
+                <span className="badge">Trực tiếp & Online</span>
+                <span className="badge">Chứng nhận</span>
+              </div>
+              <a className="btn registration-btn" href="#register">
+                Đăng ký chương trình
+              </a>
+            </div>
+            <img
+              src="/assets/alexnguyen.png"
+              alt="promotion"
+              className="registration-illustration"
+            />
           </div>
         </div>
       </div>

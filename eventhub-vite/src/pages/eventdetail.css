@@ -1,39 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap");
+
+:root {
+  --max-width: 1000px;
+  --ff: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --color-text: #111827; /* gray-900 */
+  --color-muted: #6b7280; /* gray-500 */
+  --accent: #3b82f6; /* blue-500 */
+  --accent-2: #10b981; /* green-500 */
+  --gap: 20px;
+  --base-size: 16px;
+  --rhythm: 1.6;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
-.event-hero {
-  position: relative;
-  height: 320px;
-  overflow: hidden;
-  border-radius: 8px;
-}
+
 .event-cover {
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: brightness(0.6);
-}
-.event-hero-inner {
-  position: absolute;
-  left: 24px;
-  bottom: 24px;
-  color: #fff;
-}
-.event-title {
-  font-size: 28px;
-  margin: 0 0 6px;
-}
-.event-meta {
-  opacity: 0.9;
-  margin: 0;
+  display: block;
+  border-radius: 8px;
 }
 
-.event-body {
+.event-hero-inner {
+  /* center the title over the hero image */
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
   display: flex;
-  gap: 18px;
-  margin-top: 16px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  z-index: 2;
+  color: #ffffff;
+  pointer-events: none; /* allow clicking through when needed */
+}
+
+.event-hero .event-title {
+  font-size: 34px;
+  margin: 0;
+  color: #fff;
+  text-shadow: 0 6px 22px rgba(0, 0, 0, 0.55);
+  line-height: 1.05;
 }
 .event-main {
   flex: 1;
@@ -231,14 +245,37 @@
 }
 
 .section-title {
-  font-size: 22px;
+  font-family: "Playfair Display", var(--ff);
+  font-size: 28px;
   font-weight: 700;
-  color: #1a1a1a;
-  margin: 0 0 14px 0;
-  padding-bottom: 8px;
-  border-bottom: 2px solid rgba(255, 122, 89, 0.35);
+  color: #071130;
+  margin: 0 0 16px 0;
+  padding-bottom: 10px;
   display: inline-block;
+  position: relative;
+  letter-spacing: 0.1px;
 }
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 56px;
+  height: 4px;
+  background: #000;
+  border-radius: 2px;
+  transition: width 220ms cubic-bezier(0.2, 0.9, 0.2, 1), box-shadow 220ms ease;
+  opacity: 0.95;
+}
+
+.section-title:hover::after {
+  width: 100%;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12), 0 0 10px rgba(0, 0, 0, 0.06);
+}
+
+/* Decorative small badge to the left of title for a designer touch */
+/* decorative badge removed per request */
 
 .section-content {
   color: #333333;
@@ -251,7 +288,7 @@
   margin: 0;
 }
 
-/* Highlights list - compact professional design */
+/* Highlights list - nổi bật và professional */
 .highlights-list {
   list-style: none;
   padding: 0;
@@ -261,50 +298,290 @@
   gap: 12px;
 }
 
+.content-section.description .highlights-list {
+  max-width: 100%;
+  margin-left: 0;
+}
+
+.content-section.description .highlight-item {
+  width: 100%;
+  max-width: 100%;
+}
+
 .highlight-item {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   align-items: center;
-  padding: 12px 16px;
-  background: #7c3aed;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   border: none;
   border-radius: 8px;
   margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+  transition: all 0.3s ease;
 }
 
 .highlight-item:hover {
-  background: #6d28d9;
+  transform: translateX(4px);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
 }
 
 .highlight-icon {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #f59e0b;
+  background: #fbbf24;
   border-radius: 50%;
   font-size: 12px;
   color: white;
   font-weight: bold;
+  box-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);
 }
 
 .highlight-text {
   color: white;
   font-size: 15px;
   font-weight: 500;
+  line-height: 1.4;
 }
 
 .description-text {
   margin-top: 12px;
+  background: transparent;
+  padding: 8px 0;
+  border-radius: 0;
+  border-left: none;
 }
 
 .description-text p {
-  color: #444;
-  font-size: 15px;
-  line-height: 1.6;
+  color: var(--color-text);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.9;
   margin: 0;
+}
+
+/* Per-letter color wave animation */
+@keyframes wave-color {
+  0% {
+    color: var(--color-text);
+    transform: translateY(0);
+  }
+  40% {
+    color: var(--accent);
+    transform: translateY(-4px);
+  }
+  100% {
+    color: var(--color-text);
+    transform: translateY(0);
+  }
+}
+
+.char {
+  display: inline-block;
+  will-change: color, transform;
+}
+
+.char.wave {
+  animation-name: wave-color;
+  animation-duration: 1200ms;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.description-animated.pause .char.wave {
+  animation-play-state: paused;
+}
+
+/* Registration CTA with matching blue theme and better balance */
+.registration-cta {
+  margin: 32px 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  background: linear-gradient(135deg, #4f83ff 0%, #2b5ce6 100%);
+  padding: 28px 36px;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(79, 131, 255, 0.3);
+  overflow: hidden;
+  min-height: 120px;
+}
+
+.registration-cta::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 70%
+  );
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+}
+
+.cta-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 3;
+  position: relative;
+}
+
+.cta-badges {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cta-badges .badge {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 760px) {
+  .cta-badges {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .cta-badges .badge {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+}
+
+.cta-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 500;
+  margin: 10;
+  line-height: 1.4;
+}
+
+.registration-cta .registration-btn {
+  background: #ffffff;
+  color: #2b5ce6; /* match CTA blue */
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0 8px 20px rgba(43, 92, 230, 0.12);
+  z-index: 3;
+  position: relative;
+  transition: all 0.18s ease;
+  text-decoration: none;
+  border: 1px solid rgba(43, 92, 230, 0.08);
+  cursor: pointer;
+  display: inline-block;
+}
+
+.registration-cta .registration-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(43, 92, 230, 0.18);
+  background: #ffffff;
+}
+
+.registration-illustration {
+  width: 210px;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.95;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.15));
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+  flex-shrink: 0;
+  /* nudge into the content a bit for visual overlap */
+  margin-right: -28px;
+  transform: translateY(-6px);
+}
+
+.registration-cta:hover .registration-illustration {
+  transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+  .registration-cta {
+    padding: 24px 28px;
+    min-height: 100px;
+  }
+
+  .registration-illustration {
+    width: 160px;
+    margin-right: -18px;
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-width: 760px) {
+  .registration-cta {
+    flex-direction: column;
+    gap: 20px;
+    padding: 28px 24px;
+    text-align: center;
+    min-height: auto;
+  }
+
+  .registration-illustration {
+    width: 120px;
+    order: -1;
+  }
+
+  .cta-content {
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .registration-cta {
+    padding: 24px 20px;
+  }
+
+  .registration-illustration {
+    width: 100px;
+  }
+
+  .cta-text {
+    font-size: 13px;
+  }
+
+  .registration-btn {
+    padding: 14px 28px !important;
+    font-size: 15px !important;
+  }
+}
+
+@media (max-width: 580px) {
+  .description-text p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .description-text {
+    padding: 12px 0;
+    border-left-width: 0;
+  }
 }
 
 .agenda-list {
@@ -344,9 +621,7 @@
   align-items: center;
   padding: 12px 14px;
   background: #fff;
-  border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  border: 1px solid #e5e5e5;
 }
 
 .speaker-avatar {
@@ -378,9 +653,27 @@
 }
 
 .venue-address {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 600;
-  color: #1a1a1a;
+  font-size: 16px;
+  color: #1f2937;
   margin-bottom: 12px;
+  padding: 0; /* keep it inline with the surrounding content */
+}
+
+.venue-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.venue-text {
+  display: inline-block;
+  color: #1f2937;
+  font-weight: 600;
 }
 
 .zoom-info {
@@ -406,6 +699,31 @@
   color: #333333;
 }
 
+/* inline contact row: label, icon, email */
+.contact-info > p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.contact-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.contact-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
 .contact-info a {
   color: rgba(255, 122, 89, 1);
   text-decoration: none;
@@ -425,18 +743,19 @@
   font-size: 18px !important;
   font-weight: 700 !important;
   padding: 16px 40px !important;
-  border-radius: 12px !important;
-  background: linear-gradient(90deg, #ff7a59 0%, #ff9a82 100%) !important;
-  color: #ffffff !important;
+  background: #ffffff !important;
+  color: #0f172a !important;
   text-decoration: none;
-  box-shadow: 0 8px 32px rgba(255, 122, 89, 0.3);
-  transition: all 0.3s ease;
   display: inline-block;
+  border: 1px solid rgba(15, 23, 42, 0.06) !important;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+  border-radius: 12px !important;
 }
 
 .registration-btn:hover {
+  background: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(255, 122, 89, 0.4);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.09);
 }
 
 @media (max-width: 768px) {
@@ -534,135 +853,235 @@
   margin: 0 0 8px;
 }
 
-/* Professional layout design: Balanced hero + content alignment */
+/* Layout cân đối chiều ngang - nổi bật nhưng đơn giản */
 @media (min-width: 980px) {
-  /* Container with proper margins and max-width for readability */
+  /* Container - cân đối với header image */
   .event-detail-page {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr;
-    gap: 32px;
-    align-items: start;
+    padding: 24px;
+    background: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      sans-serif;
   }
 
-  /* Hero spans full width but with better proportions */
+  /* Hero - cân đối với layout */
   .event-hero {
-    grid-column: 1 / -1;
     height: 280px;
-    border-radius: 12px;
-    margin-bottom: 8px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    margin-bottom: 32px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
 
-  /* Content flows in two balanced columns below hero */
+  /* Layout từ trên xuống - single column cân đối */
   .event-body.unified-layout {
-    grid-column: 1 / -1;
     max-width: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: start;
   }
 
-  /* Content sections with better spacing */
   .unified-layout .event-content {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
+    display: block;
+    max-width: 100%;
   }
 
-  /* Description and agenda in left column */
-  .content-section.description,
+  /* Sections với styling nổi bật nhưng đơn giản */
+  .content-section.description {
+    padding: 28px;
+    margin-bottom: 20px;
+    /* simplified look: solid white background with stronger left accent */
+    background: #ffffff;
+    border: 1px solid #e6eefc;
+    border-left: 3px solid var(--accent);
+  }
+
   .content-section.agenda {
-    grid-column: 1;
-    border-left: 4px solid rgba(255, 122, 89, 0.6);
-    padding-left: 20px;
-    margin-left: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #fefefe 0%, #f9fafb 100%);
+    border: 1px solid #e5e7eb;
+    border-left: 3px solid #10b981;
   }
 
-  /* Speakers and venue in right column */
-  .content-section.speakers,
-  .content-section.venue,
+  .content-section.speakers {
+    padding: 28px;
+    margin-bottom: 20px;
+    background: #ffffff;
+    border: 1px solid #eef2ff;
+    border-left: 3px solid #8b5cf6;
+  }
+
+  .content-section.venue {
+    padding: 28px;
+    margin-bottom: 20px;
+    background: #ffffff;
+    border: 1px solid #fff5eb;
+    border-left: 3px solid #f97316;
+  }
+
   .content-section.contact {
-    grid-column: 2;
-  }
-
-  /* Registration CTA spans full width and stands out */
-  .registration-cta {
-    grid-column: 1 / -1;
-    margin-top: 32px;
-    padding: 32px 0;
-    text-align: center;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 122, 89, 0.05) 0%,
-      rgba(255, 154, 130, 0.05) 100%
-    );
-    border-radius: 16px;
-    border: 1px solid rgba(255, 122, 89, 0.15);
-  }
-
-  /* Enhanced visual hierarchy */
-  .section-title {
-    font-size: 20px;
+    padding: 20px;
     margin-bottom: 16px;
-    position: relative;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-left: 3px solid #22c55e;
   }
 
-  /* underline removed per request */
+  /* Typography - nổi bật và rõ ràng */
+  .section-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1f2937;
+    position: relative;
+    padding-bottom: 8px;
+  }
 
-  /* Better content spacing */
+  .section-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 64px;
+    height: 3px;
+    background: #000;
+    border-radius: 2px;
+    transition: width 260ms cubic-bezier(0.2, 0.9, 0.2, 1);
+  }
+
+  .section-title:hover::after {
+    width: 100%;
+  }
+
+  /* Hover effects cho sections */
   .content-section {
-    margin-bottom: 28px;
+    transition: all 0.3s ease;
+    margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: none;
   }
 
-  /* Improved speaker cards layout */
+  .content-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Speaker cards - grid layout cân đối */
   .speakers-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
   }
 
   .speaker-card {
-    padding: 14px 18px;
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   .speaker-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: #8b5cf6;
   }
 
-  /* Enhanced agenda styling */
+  /* Agenda - improved design */
   .agenda-item {
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 16px 0;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    transition: background 0.2s ease;
+  }
+
+  .agenda-item:hover {
+    background: rgba(16, 185, 129, 0.05);
+    border-radius: 6px;
+    margin: 0 -8px;
+    padding: 16px 8px;
   }
 
   .agenda-item:last-child {
     border-bottom: none;
   }
 
-  /* Better typography scale */
-  .event-title {
-    font-size: 32px;
-    font-weight: 800;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  .agenda-time {
+    font-weight: 700;
+    color: #10b981;
+    font-size: 14px;
+    min-width: 70px;
+    flex-shrink: 0;
+    background: rgba(16, 185, 129, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
   }
 
-  /* Venue info enhancement (no rounded corners) */
-  .venue-info {
-    background: rgba(255, 122, 89, 0.04);
-    padding: 20px;
-    border-left: 4px solid rgba(255, 122, 89, 0.6);
+  .agenda-event {
+    color: #374151;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* Venue styling - attractive */
+  .venue-address {
+    font-weight: 600;
+    font-size: 16px;
+    color: #1f2937;
+    margin-bottom: 20px;
+    padding: 16px;
+    background: #ffffff;
+    border-radius: 6px;
+  }
+
+  .venue-map {
+    margin: 20px 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Contact section - clean emphasis */
+  .contact-info {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .contact-info a {
+    color: #22c55e;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .contact-info a:hover {
+    color: #16a34a;
+    text-decoration: underline;
+  }
+
+  /* Registration CTA - eye-catching */
+  .registration-cta {
+    margin-top: 32px;
+    padding: 32px;
+    text-align: center;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  }
+
+  /* Hero title - strong hierarchy */
+  .event-title {
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 }
 
