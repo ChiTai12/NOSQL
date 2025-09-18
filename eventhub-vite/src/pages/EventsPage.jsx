@@ -6,89 +6,22 @@ import { useNavigate } from "react-router-dom";
 
 export default function EventsPage({ events = [], onSelect, selectedEvent }) {
   const navigate = useNavigate();
-  const [filtersOpen, setFiltersOpen] = useState(false);
-  const [tagFilter, setTagFilter] = useState("");
-  const [typeFilter, setTypeFilter] = useState("");
-
-  const tags = useMemo(() => {
-    const s = new Set();
-    events.forEach((e) => (e.tags || []).forEach((t) => s.add(t)));
-    return Array.from(s).slice(0, 10);
-  }, [events]);
-
-  const filtered = useMemo(() => {
-    return events.filter((e) => {
-      if (tagFilter && !(e.tags || []).includes(tagFilter)) return false;
-      if (typeFilter && e.type !== typeFilter) return false;
-      return true;
-    });
-  }, [events, tagFilter, typeFilter]);
+  // Filters are not needed for now — show all events
+  const filtered = events;
 
   return (
     <div className="events-page">
-      <div className="events-topbar">
-        <div className="left">
-          <button className="btn" onClick={() => setFiltersOpen((s) => !s)}>
-            Filters
-          </button>
-          <div className="chips">
-            {tags.map((t) => (
-              <button
-                key={t}
-                className={`chip ${t === tagFilter ? "active" : ""}`}
-                onClick={() => setTagFilter(t)}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="right">
-          <div className="count">{filtered.length} events</div>
-        </div>
+      <div className="events-hero">
+        <h2 className="events-hero-title">NHỮNG SỰ KIỆN VÀ CÁC HỘI THẢO HOT</h2>
       </div>
 
-      {filtersOpen && (
-        <div className="filter-panel">
-          <label>
-            Type
-            <select
-              value={typeFilter}
-              onChange={(e) => setTypeFilter(e.target.value)}
-            >
-              <option value="">Any</option>
-              <option value="conference">Conference</option>
-              <option value="workshop">Workshop</option>
-            </select>
-          </label>
-          <label>
-            Tag
-            <input
-              value={tagFilter}
-              onChange={(e) => setTagFilter(e.target.value)}
-              placeholder="type tag..."
-            />
-          </label>
-          <button
-            className="btn"
-            onClick={() => {
-              setTagFilter("");
-              setTypeFilter("");
-              setFiltersOpen(false);
-            }}
-          >
-            Clear
-          </button>
-        </div>
-      )}
-
+      {/* restore first 6 event cards below the hero title */}
       <div className="events-grid">
-        {filtered.map((e) => (
+        {filtered.slice(0, 6).map((e) => (
           <React.Fragment key={e.id}>
             <EventCard
               event={e}
               onView={(ev) => {
-                // prefer navigation to a dedicated detail route
                 if (onSelect) onSelect(ev);
                 navigate(`/events/${ev.id}`);
               }}
@@ -105,6 +38,80 @@ export default function EventsPage({ events = [], onSelect, selectedEvent }) {
         ))}
         {filtered.length === 0 && <div className="empty">No events found</div>}
       </div>
+
+      {/* promo banner similar to sample: centered heading + CTA */}
+      <section className="promo-banner" aria-label="promo">
+        <div className="promo-inner">
+          <h3 className="promo-title">TẠI SAO NÊN ĐĂNG KÝ</h3>
+          <button
+            className="promo-cta"
+            onClick={() => {
+              // basic placeholder action — navigate to contact or open modal
+              navigate("/contact");
+            }}
+          >
+            Liên hệ ngay
+          </button>
+        </div>
+      </section>
+
+      {/* clients / partners promo */}
+      <section className="clients-section">
+        <div className="clients-inner">
+          <h4 className="clients-title">Khách hàng của chúng tôi</h4>
+          <div className="clients-grid">
+            <div className="client-wrap">
+              <img
+                src="https://logo.clearbit.com/vietcombank.com.vn"
+                alt="Vietcombank"
+                className="client-logo"
+              />
+            </div>
+            <div className="client-wrap">
+              <img
+                src="https://logo.clearbit.com/bidv.com.vn"
+                alt="BIDV"
+                className="client-logo"
+              />
+            </div>
+            <div className="client-wrap featured">
+              <img
+                src="https://logo.clearbit.com/mbbank.com.vn"
+                alt="MB Bank"
+                className="client-logo"
+              />
+            </div>
+            <div className="client-wrap">
+              <img
+                src="https://logo.clearbit.com/acb.com.vn"
+                alt="ACB"
+                className="client-logo"
+              />
+            </div>
+            <div className="client-wrap">
+              <img
+                src="https://cdn.freebiesupply.com/logos/large/2x/samsung-1-logo-png-transparent.png"
+                alt="Samsung"
+                className="client-logo"
+              />
+            </div>
+            <div className="client-wrap">
+              <img
+                src="https://htdcorp.vn/wp-content/uploads/2016/09/logo-vietinbank.png"
+                alt="VietinBank"
+                className="client-logo"
+              />
+            </div>
+            <div className="client-wrap">
+              <img
+                src="https://logo.clearbit.com/techcombank.com"
+                alt="Techcombank"
+                className="client-logo"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

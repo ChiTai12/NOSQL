@@ -1,4 +1,13 @@
 .events-page {
+  /* page wrapper kept for future page-level styles */
+}
+/* Use Poppins for promo headings/buttons for a modern look */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&display=swap");
+
+.promo-title,
+.promo-cta {
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
 }
 .events-topbar {
   display: flex;
@@ -39,9 +48,147 @@
   gap: 20px;
   align-items: start;
 }
+.events-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 12px;
+}
+.events-hero-title {
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #00e5ff, #00d4d4 40%, #00b894 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent; /* ensure non-webkit browsers hide the text fill */
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 6px 12px rgba(0, 212, 212, 0.14));
+}
+
+/* Promo banner styles */
+.promo-banner {
+  margin-top: 36px;
+  /* full-bleed background across the viewport */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: linear-gradient(90deg, #00aaff 0%, #5b21b6 100%);
+  color: #fff;
+  padding: 80px 0; /* taller banner */
+}
+.promo-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.promo-title {
+  font-size: 54px; /* much larger */
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.promo-cta {
+  background: #ffffff;
+  color: #5b21b6;
+  border: none;
+  padding: 18px 44px;
+  border-radius: 40px;
+  font-weight: 900;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.promo-cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
+}
 .empty {
   padding: 40px;
   text-align: center;
+}
+
+/* Clients / partners section */
+.clients-section {
+  padding: 48px 12px 72px;
+  background: #ffffff; /* keep section clean white so logos show clearly */
+}
+.clients-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.clients-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+}
+.clients-grid {
+  display: flex;
+  gap: 64px;
+  justify-content: space-between; /* full-width even distribution */
+  align-items: center;
+  width: 100vw; /* full-bleed so spacing reaches edges */
+  margin-left: calc(50% - 50vw);
+  padding: 0 64px; /* horizontal padding from viewport edges */
+  flex-wrap: nowrap;
+}
+.client-wrap {
+  flex: 0 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 220px; /* cap width for consistent spacing */
+}
+.client-wrap,
+.client-wrap .client-logo {
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+.client-wrap .client-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transition: transform 200ms ease;
+}
+.client-wrap .client-logo:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+.client-wrap.featured .client-logo {
+  width: 150px;
+  height: 150px;
+  padding: 0;
+  border-radius: 0;
+  transform: translateY(-6px);
+}
+
+@media (max-width: 900px) {
+  .clients-grid {
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .client-wrap {
+    flex: 0 1 30%;
+    max-width: none;
+  }
+}
+@media (max-width: 600px) {
+  .clients-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 @media (max-width: 900px) {
   .events-grid {

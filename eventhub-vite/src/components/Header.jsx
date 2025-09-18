@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import "./header.css";
+import "./header.css";
 
 export default function Header() {
   const [sidebarOpen, setSidebarOpen] = useState(() => {
@@ -20,10 +20,13 @@ export default function Header() {
   return (
     <>
       <header className={`header ${scrolled ? "scrolled" : ""}`}>
-        <nav className="nav">
-          <div className="logo">🚀 EventHub</div>
+        <div className="nav-container">
+          <div className="logo">
+            <span className="logo-icon material-icons">rocket_launch</span>
+            <span className="logo-text">Sự kiện</span>
+          </div>
 
-          <div className="nav-center">
+          <nav className="nav">
             <ul className="nav-links">
               <li>
                 <a href="#home">
@@ -33,8 +36,8 @@ export default function Header() {
               </li>
               <li>
                 <a href="#events">
-                  <span className="material-icons">add_circle</span>
-                  Tạo sự kiện
+                  <span className="material-icons">visibility</span>
+                  Chi tiết
                 </a>
               </li>
               <li>
@@ -43,43 +46,42 @@ export default function Header() {
                   Liên hệ
                 </a>
               </li>
-            </ul>
-
-            <div className="auth-buttons">
-              <div className="account-dropdown">
-                <button className="btn btn-secondary account-btn">
+              <li>
+                <a href="#registered-events">
+                  <span className="material-icons">event_available</span>
+                  Sự kiện đã đăng ký
+                </a>
+              </li>
+              <li>
+                <a href="#saved-events">
+                  <span className="material-icons">bookmark</span>
+                  Sự kiện đã lưu
+                </a>
+              </li>
+              <li>
+                <a href="#notification-settings">
+                  <span className="material-icons">notifications</span>
+                  Cài đặt thông báo
+                </a>
+              </li>
+              <li className="account-link">
+                <a href="#account">
                   <span className="material-icons">person</span>
                   Tài khoản
-                  <span className="material-icons dropdown-arrow">
-                    keyboard_arrow_down
-                  </span>
-                </button>
-                <div className="dropdown-menu">
-                  <a href="#registered-events" className="dropdown-item">
-                    <span className="material-icons">event_available</span>
-                    Sự kiện đã đăng ký
-                  </a>
-                  <a href="#saved-events" className="dropdown-item">
-                    <span className="material-icons">bookmark</span>
-                    Sự kiện đã lưu
-                  </a>
-                  <a href="#notification-settings" className="dropdown-item">
-                    <span className="material-icons">notifications</span>
-                    Cài đặt thông báo
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Always-visible menu button so sidebar can be opened on desktop for testing */}
-          <button
-            className="mobile-menu"
-            style={{ display: "block" }}
-            onClick={() => setSidebarOpen(true)}
-          >
-            ☰
-          </button>
-        </nav>
+                </a>
+              </li>
+            </ul>
+
+            {/* Always-visible menu button so sidebar can be opened on desktop for testing */}
+            <button
+              className="mobile-menu"
+              style={{ display: "block" }}
+              onClick={() => setSidebarOpen(true)}
+            >
+              ☰
+            </button>
+          </nav>
+        </div>
       </header>
 
       <aside className={`sidebar ${sidebarOpen ? "active" : ""}`}>

@@ -1,0 +1,190 @@
+/* Header / Navigation styles extracted from src/index.css */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  /* use same dark, elevated background as footer for a cohesive look */
+  background: rgba(26, 26, 46, 0.95);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+.header.scrolled {
+  /* slightly stronger dark when scrolled */
+  background: rgba(26, 26, 46, 0.98);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  min-height: 64px;
+  position: relative; /* allow absolute positioning for logo */
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: -40px; /* flush toward left edge */
+}
+
+.logo .logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ffd700; /* yellow/gold background */
+  color: #2b2b3a; /* dark icon color for contrast */
+  margin-right: 8px;
+  font-size: 20px;
+}
+.logo .logo-text {
+  color: #ffd700; /* yellow/gold text */
+  font-weight: 800;
+  font-size: 1.05rem;
+  vertical-align: middle;
+}
+
+@media (max-width: 1000px) {
+  /* reduce the left nudge on smaller screens so header items don't overflow */
+  .nav-container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .logo {
+    left: 12px;
+  }
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  margin: 0 0 0 120px; /* moved right per request */
+  padding: 0;
+}
+.nav-links li {
+  display: flex;
+}
+.nav-links a {
+  color: rgba(11, 17, 22, 0.9);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+/* Material Icons styling */
+.nav-links .material-icons {
+  font-size: 18px;
+  color: inherit;
+}
+
+/* Hover effects */
+.nav-links a:hover {
+  /* remove background box; show underline and color change instead */
+  background: transparent;
+  transform: none;
+  color: #37d67a; /* accent hover color (green) */
+}
+.mobile-menu {
+  display: none;
+  background: none;
+  border: none;
+  color: rgba(11, 17, 22, 0.95);
+  font-size: 1.2rem;
+}
+
+/* Header overrides for better contrast on warm header */
+.header .nav-links a {
+  color: rgba(255, 255, 255, 0.95);
+}
+.header .nav-links a {
+  position: relative; /* needed for underline pseudo-element */
+}
+.header .nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  bottom: -6px;
+  background: transparent;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease, background 180ms ease;
+  border-radius: 3px;
+}
+.header .nav-links a:hover::after {
+  background: #37d67a;
+  transform: scaleX(1);
+}
+
+/* ensure link text also turns green and animates together with the icon */
+.header .nav-links a {
+  transition: color 180ms ease;
+}
+.header .nav-links a:hover {
+  color: #37d67a;
+}
+
+.header .nav-links .material-icons {
+  color: rgba(255, 255, 255, 0.95);
+  transition: color 180ms ease;
+}
+.header .nav-links a:hover .material-icons {
+  color: #37d67a;
+}
+.header .mobile-menu {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Right-aligned account link: match nav item sizing, gap and hover behavior */
+.account-link {
+  display: flex;
+  align-items: center;
+}
+.account-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; /* match .nav-links a gap */
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  padding: 8px 12px; /* same padding as .nav-links a */
+  border-radius: 8px;
+  transition: all 0.3s ease; /* match nav items transition */
+  white-space: nowrap;
+}
+.account-link a:hover {
+  background: transparent;
+  transform: none;
+  color: #37d67a;
+}
+.account-link a:hover .material-icons {
+  color: #37d67a;
+}
+.account-link .material-icons {
+  font-size: 18px;
+  color: inherit;
+  transition: color 180ms ease;
+}
