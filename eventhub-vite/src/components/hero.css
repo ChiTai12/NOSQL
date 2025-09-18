@@ -97,15 +97,15 @@
   bottom: 16px;
   display: flex;
   gap: 8px;
-  z-index: 3;
+  z-index: 12; /* ensure controls appear above debug thumbnails */
 }
 .hero-controls button {
   background: rgba(255, 255, 255, 0.12);
   border: none;
   color: white;
-  padding: 24px;
+  padding: 14px;
   border-radius: 6px;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -143,4 +143,63 @@
   padding: 2px 4px;
   border-radius: 3px;
   color: #fff;
+}
+
+@media (max-width: 480px) {
+  .hero-controls {
+    right: 8px;
+    bottom: 8px;
+  }
+  .hero-controls button {
+    padding: 10px;
+    font-size: 14px;
+  }
+  .hero-debug .thumb {
+    width: 46px;
+    height: 32px;
+  }
+
+  .vh-hero {
+    height: 70vh;
+    padding-top: 60px;
+  }
+
+  .hero-inner {
+    padding: 16px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .hero-search {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-search input {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .vh-hero {
+    height: 75vh;
+    padding-top: 64px;
+  }
+
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .hero-search input {
+    width: 100%;
+    max-width: 90%;
+  }
+
+  .hero-controls button {
+    padding: 12px;
+    font-size: 18px;
+  }
 }

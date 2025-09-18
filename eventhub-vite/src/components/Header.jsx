@@ -72,11 +72,11 @@ export default function Header() {
               </li>
             </ul>
 
-            {/* Always-visible menu button so sidebar can be opened on desktop for testing */}
+            {/* Mobile menu toggle: visible only via CSS media queries */}
             <button
               className="mobile-menu"
-              style={{ display: "block" }}
               onClick={() => setSidebarOpen(true)}
+              aria-label="Open menu"
             >
               ☰
             </button>

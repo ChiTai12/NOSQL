@@ -96,21 +96,14 @@ main {
   border-radius: 8px;
 }
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  .mobile-menu {
-    display: block;
-  }
-}
+/* Mobile menu and sidebar are controlled by component CSS and media queries.
+   Removed the global force-hide so the mobile hamburger and sidebar can function
+   on small screens. */
 
-/* Disable mobile slide-out sidebar and hamburger: user prefers no slide panel */
-.mobile-menu {
-  display: none !important; /* hide hamburger so user can't click it */
-}
-.sidebar {
-  display: none !important; /* prevent slide-out panel from appearing */
-  right: -9999px !important;
-  pointer-events: none !important;
+/* Mobile main content adjustments */
+@media (max-width: 768px) {
+  main {
+    padding: 16px 12px;
+    margin-top: 0;
+  }
 }
